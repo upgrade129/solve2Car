@@ -1,0 +1,41 @@
+version: "2"
+services:  
+    nginx:
+        container_name: nginx
+        restart: always
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./carkee-nginx
+        ports:
+            - "80:80"
+        depends_on:
+            - client
+            - api
+    client:
+        stdin_open: true
+        container_name: client
+        restart: always
+        build: 
+            context: ./carkee-dashboard
+            dockerfile: Dockerfile.dev
+        restart: always
+        volumes:
+            - ./carkee-dashboard:/app
+            - /app/node_modules
+        environment:
+            - PORT=3000
+    api:
+        container_name: api
+        restart: always
+        build: 
+            context: ./carkee-api
+            dockerfile: Dockerfile.dev
+        volumes:
+            - ./carkee-api:/app
+            - /app/node_modules
+        env_file:
+            - ./carkee-api/.env
+        environment:
+            - PORT=3001
+            - PRODVERSION=1.0.0,1.0.2
+            - QAVERSION=1.0.1

@@ -1,0 +1,52 @@
+@import './styles/variables/_colors.less';
+@import './styles/components/feedback/_spin.less';
+
+.loading {
+  .ant-spin {
+    color: @primary-color;
+  }
+}
+
+.export-btn {
+  background-color: #73d13d !important;
+  border-color: #73d13d !important;
+
+  &:hover {
+    background-color: #95de64 !important;
+    border-color: #95de64 !important;
+  }
+
+  &:active {
+    background-color: #95de64 !important;
+    border-color: #95de64 !important;
+  }
+
+  &:focus {
+    background-color: #95de64 !important;
+    border-color: #95de64 !important;
+  }
+}
+
+.danger-btn {
+  background-color: #ff4d4f !important;
+  border-color: #ff4d4f !important;
+
+  &:hover {
+    background-color: #ff7875 !important;
+    border-color: #ff7875 !important;
+  }
+
+  &:active {
+    background-color: #ff7875 !important;
+    border-color: #ff7875 !important;
+  }
+
+  &:focus {
+    background-color: #ff7875 !important;
+    border-color: #ff7875 !important;
+  }
+}
+
+.empty-label > .ant-form-item-label > label::after {
+  content: '' !important;
+}

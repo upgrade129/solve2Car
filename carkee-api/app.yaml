@@ -1,0 +1,120 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-carkee-api
+spec:
+  type: NodePort
+  ports:
+    - name: service-carkee-api
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: carkee-api
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carkee-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carkee-api
+  template:
+    metadata:
+      labels:
+        app: carkee-api
+    spec:
+      containers:
+        - name: carkee-api
+          image: gcr.io/elaborate-chess-313504/carkee-api:latest
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            periodSeconds: 1
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 10
+            initialDelaySeconds: 5
+          env:
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: PORT
+            - name: PRODVERSION
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: PRODVERSION
+            - name: QAVERSION
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: QAVERSION
+            - name: DBHOST
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: DBHOST
+            - name: DBPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: DBPASSWORD
+            - name: DB
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: DB
+            - name: DIALECT
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: DIALECT
+            - name: JWTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: JWTSECRET
+            - name: ALGORITHM
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: ALGORITHM
+            - name: TOKENALGO
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: TOKENALGO
+            - name: EXPIREIN
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: EXPIREIN
+            - name: GCLOUD_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: GCLOUD_BUCKET
+            - name: GCLOUD_PROJECT
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: GCLOUD_PROJECT
+            - name: GCLOUD_CLIENT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: GCLOUD_CLIENT_EMAIL
+            - name: GCLOUD_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: carkee-api-secret
+                  key: GCLOUD_PRIVATE_KEY

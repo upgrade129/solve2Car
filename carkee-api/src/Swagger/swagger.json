@@ -1,0 +1,4268 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server",
+      "variables": {}
+    },
+    {
+      "url": "https://carkee-staging.solveware.co",
+      "description": "Live server",
+      "variables": {}
+    }
+  ],
+  "info": {
+    "version": "b238a7c0-2985-4770-9d8d-f1ea0152611f",
+    "title": "Carkee",
+    "description": "",
+    "termsOfService": "",
+    "contact": {},
+    "license": {
+      "name": ""
+    }
+  },
+  "paths": {
+    "/api/user/register": {
+      "post": {
+        "summary": "Registration",
+        "operationId": "Registration",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password",
+                  "password_confirm",
+                  "account_id",
+                  "fullname",
+                  "mobile_code",
+                  "mobile"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "harry99@yopmail.or"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Pass!234"
+                  },
+                  "password_confirm": {
+                    "type": "string",
+                    "example": "Pass!234"
+                  },
+                  "account_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "fullname": {
+                    "type": "string",
+                    "example": "test remo"
+                  },
+                  "mobile_code": {
+                    "type": "string",
+                    "example": "+65"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "example": "882874300"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "email",
+                  "value": "harry99@yopmail.or",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "Pass!234",
+                  "type": "text"
+                },
+                {
+                  "key": "password_confirm",
+                  "value": "Pass!234",
+                  "type": "text"
+                },
+                {
+                  "key": "account_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "fullname",
+                  "value": "test remo",
+                  "type": "text"
+                },
+                {
+                  "key": "mobile_code",
+                  "value": "+65",
+                  "type": "text"
+                },
+                {
+                  "key": "mobile",
+                  "value": "882874300",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "summary": "Login",
+        "operationId": "Login",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Content-Type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password", "account_id"],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "harry1@yopmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Pass!234"
+                  },
+                  "account_id": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "email",
+                  "value": "harry1@yopmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "Pass!234",
+                  "type": "text"
+                },
+                {
+                  "key": "account_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "device_type",
+                  "value": "1",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "uiid",
+                  "value": "123",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "device_type",
+                  "value": "android",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/user/update-profile": {
+      "put": {
+        "summary": "Profile Update - Step 1",
+        "operationId": "ProfileUpdate-Step1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "step",
+                  "fullname",
+                  "mobile_code",
+                  "mobile",
+                  "gender",
+                  "birthday",
+                  "add_1",
+                  "add_2",
+                  "country",
+                  "postal_code",
+                  "nric",
+                  "file",
+                  "profession",
+                  "company",
+                  "unit_no",
+                  "annual_salary"
+                ],
+                "properties": {
+                  "step": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "fullname": {
+                    "type": "string",
+                    "example": "Harry voot"
+                  },
+                  "mobile_code": {
+                    "type": "string",
+                    "example": "+61"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "example": "983728472"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "example": "M"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "example": "2010-01-01"
+                  },
+                  "add_1": {
+                    "type": "string",
+                    "example": "sdf"
+                  },
+                  "add_2": {
+                    "type": "string",
+                    "example": "asdf"
+                  },
+                  "country": {
+                    "type": "string",
+                    "example": "asdf"
+                  },
+                  "postal_code": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "nric": {
+                    "type": "string",
+                    "example": "3234"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "profession": {
+                    "type": "string",
+                    "example": "Software Engineer"
+                  },
+                  "company": {
+                    "type": "string",
+                    "example": "Solveware"
+                  },
+                  "unit_no": {
+                    "type": "string",
+                    "example": "3"
+                  },
+                  "annual_salary": {
+                    "type": "string",
+                    "example": "36366363"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "step",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "fullname",
+                  "value": "Harry voot",
+                  "type": "text"
+                },
+                {
+                  "key": "mobile_code",
+                  "value": "+61",
+                  "type": "text"
+                },
+                {
+                  "key": "mobile",
+                  "value": "983728472",
+                  "type": "text"
+                },
+                {
+                  "key": "gender",
+                  "value": "M",
+                  "type": "text"
+                },
+                {
+                  "key": "birthday",
+                  "value": "2010-01-01",
+                  "description": "format: yyyy-mm-dd",
+                  "type": "text"
+                },
+                {
+                  "key": "add_1",
+                  "value": "sdf",
+                  "type": "text"
+                },
+                {
+                  "key": "add_2",
+                  "value": "asdf",
+                  "type": "text"
+                },
+                {
+                  "key": "country",
+                  "value": "asdf",
+                  "type": "text"
+                },
+                {
+                  "key": "postal_code",
+                  "value": "1",
+                  "description": "number",
+                  "type": "text"
+                },
+                {
+                  "key": "nric",
+                  "value": "3234",
+                  "type": "text"
+                },
+                {
+                  "key": "img_profile",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "profession",
+                  "value": "Software Engineer",
+                  "type": "text"
+                },
+                {
+                  "key": "company",
+                  "value": "Solveware",
+                  "type": "text"
+                },
+                {
+                  "key": "unit_no",
+                  "value": "3",
+                  "type": "text"
+                },
+                {
+                  "key": "annual_salary",
+                  "value": "36366363",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/user/info": {
+      "get": {
+        "summary": "Member Info",
+        "operationId": "MemberInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/user/getAllUsers": {
+      "get": {
+        "summary": "Member- List all",
+        "operationId": "Member-Listall",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/pagesize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/user/update-mobile": {
+      "patch": {
+        "summary": "Member Update Mobile",
+        "operationId": "MemberUpdateMobile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["mobile_code", "mobile"],
+                "properties": {
+                  "mobile_code": {
+                    "type": "string",
+                    "example": "+65"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "example": "121212"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "mobile_code",
+                  "value": "+65",
+                  "type": "text"
+                },
+                {
+                  "key": "mobile",
+                  "value": "121212",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/user/update-password": {
+      "patch": {
+        "summary": "Member - update password",
+        "operationId": "Member-updatepassword",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["password_current", "password_new", "password_confirm"],
+                "properties": {
+                  "password_current": {
+                    "type": "string",
+                    "example": "Pass!234"
+                  },
+                  "password_new": {
+                    "type": "string",
+                    "example": "Pass!2345"
+                  },
+                  "password_confirm": {
+                    "type": "string",
+                    "example": "Pass!2345"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "password_current",
+                  "value": "Pass!234",
+                  "type": "text"
+                },
+                {
+                  "key": "password_new",
+                  "value": "Pass!2345",
+                  "type": "text"
+                },
+                {
+                  "key": "password_confirm",
+                  "value": "Pass!2345",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/member/verify-password": {
+      "patch": {
+        "summary": "Member - Validate Password",
+        "operationId": "Member-ValidatePassword",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/access-token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["password"],
+                "properties": {
+                  "password": {
+                    "type": "string",
+                    "example": "Pass!234"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "password",
+                  "value": "Pass!234",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/member/upload-doc": {
+      "post": {
+        "summary": "Profile Upload",
+        "operationId": "ProfileUpload",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "example": "6zLvgYYE3u9fY0bGKNB-CCPISTWbWWWj"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["field", "file"],
+                "properties": {
+                  "field": {
+                    "type": "string",
+                    "example": "transfer_screenshot"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "field",
+                  "value": "img_profile",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "field",
+                  "value": "img_nric",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "field",
+                  "value": "img_insurance",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "field",
+                  "value": "img_log_card",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "field",
+                  "value": "img_authorization",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "field",
+                  "value": "transfer_screenshot",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/monic/Pictures/all-i-got.png"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["User Registration"]
+      }
+    },
+    "/api/item/add": {
+      "post": {
+        "summary": "Item - Add",
+        "operationId": "Item-Add",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "file", "amount"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Paint Repair"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "All services"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "amount": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "Paint Repair",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "All services",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "amount",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/edit": {
+      "put": {
+        "summary": "Item - Edit",
+        "operationId": "Item-Edit",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "limit", "status", "item_id"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "massage 1hour"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "all kinds of massage"
+                  },
+                  "limit": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "item_id": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "massage 1hour",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "all kinds of massage",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "item_id",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/list-all": {
+      "get": {
+        "summary": "Item - List All",
+        "description": "List all available items",
+        "operationId": "Item-ListAll",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/redeem": {
+      "post": {
+        "summary": "Item - Redeem",
+        "description": "Members redeem",
+        "operationId": "Item-Redeem",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "example": "KF8BM9CmSrGou60C49xQmxAbAg6wtYB7"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "description": "Members redeem",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["item_id", "pin"],
+                "properties": {
+                  "item_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "pin": {
+                    "type": "string",
+                    "example": "1234"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "item_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "pin",
+                  "value": "1234",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/info": {
+      "get": {
+        "summary": "Item - Info",
+        "operationId": "Item-Info",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/item_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/setPrimary": {
+      "patch": {
+        "summary": "Item - set-primary",
+        "operationId": "Item-set-primary",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["id"],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "6"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "id",
+                  "value": "6",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/upload": {
+      "post": {
+        "summary": "Item - Upload Galleries",
+        "operationId": "Item-UploadGalleries",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "example": "BbPS4gjhAeMfLuBfbQR-TVWcXap1D7dG"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["item_id", "file"],
+                "properties": {
+                  "item_id": {
+                    "type": "string",
+                    "example": "4"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "item_id",
+                  "value": "4",
+                  "type": "text"
+                },
+                {
+                  "key": "imageFiles[]",
+                  "type": "file",
+                  "src": "/C:/Users/asus/Pictures/21770379_1182143265219399_5096582569105817600_n.jpg"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/replace-image": {
+      "put": {
+        "summary": "Item - Replace Image",
+        "operationId": "Item-ReplaceImage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["image_id", "file", "item_id"],
+                "properties": {
+                  "image_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "item_id": {
+                    "type": "string",
+                    "example": "3"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "image_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "imageFile",
+                  "type": "file",
+                  "src": "/C:/Users/monic/Pictures/add-director.png"
+                },
+                {
+                  "key": "item_id",
+                  "value": "3",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/gallery-delete": {
+      "delete": {
+        "summary": "Item - Gallery delete",
+        "operationId": "Item-Gallerydelete",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/item-approved": {
+      "patch": {
+        "summary": "item - item-approved",
+        "operationId": "item-item-approved",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["item_id", "status"],
+                "properties": {
+                  "item_id": {
+                    "type": "string",
+                    "example": "2"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "item_id",
+                  "value": "2",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "1",
+                  "description": "1 for approved, 0 for rejected",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/removeItem": {
+      "delete": {
+        "summary": "Item - removeItem",
+        "operationId": "Item-removeItem",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/add-redeem": {
+      "post": {
+        "summary": "Item - Add Redeem",
+        "operationId": "Item-AddRedeem",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "item_id"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Paint Repair"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "All services"
+                  },
+                  "item_id": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "Paint Repair",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "All services",
+                  "type": "text"
+                },
+                {
+                  "key": "item_id",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/update-redeem": {
+      "put": {
+        "summary": "Item - Redeem Update",
+        "operationId": "Item-RedeemUpdate",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "item_id", "redeem_id"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "massage 1hour"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "all kinds of massage"
+                  },
+                  "item_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "redeem_id": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "massage 1hour",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "all kinds of massage",
+                  "type": "text"
+                },
+                {
+                  "key": "item_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "redeem_id",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/redeem-info": {
+      "get": {
+        "summary": "Item - redeem info",
+        "description": "List all redeems where items belong to vendor",
+        "operationId": "Item-redeeminfo",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/redeem_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/item/redeem-list": {
+      "get": {
+        "summary": "Item - All Redeem of list",
+        "description": "List all redeems where items belong to vendor",
+        "operationId": "Item-AllRedeemoflist",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Item"]
+      }
+    },
+    "/api/news/add": {
+      "post": {
+        "summary": "News Add",
+        "operationId": "NewsAdd",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "summary", "file"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "First Newsmm"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "summary": {
+                    "type": "string",
+                    "example": "xyz"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "First Newsmm",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "summary",
+                  "value": "xyz",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture1.PNG"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/list": {
+      "get": {
+        "summary": "News - list",
+        "operationId": "News-list",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/happening": {
+      "get": {
+        "summary": "News - Happening",
+        "operationId": "News-Happening",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/trending": {
+      "get": {
+        "summary": "News - Trending",
+        "operationId": "News-Trending",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/update": {
+      "put": {
+        "summary": "News Update",
+        "operationId": "NewsUpdate",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "summary", "file", "news_id"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "First News"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "summary": {
+                    "type": "string",
+                    "example": "xyz"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "news_id": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "First News",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "summary",
+                  "value": "xyz",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "news_id",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/isHappening": {
+      "patch": {
+        "summary": "News Update IsHappening",
+        "operationId": "NewsUpdateIsHappening",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["account_id", "news_id"],
+                "properties": {
+                  "account_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "news_id": {
+                    "type": "string",
+                    "example": "16"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "account_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "news_id",
+                  "value": "16",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/isTrending": {
+      "patch": {
+        "summary": "News Update IsTrending",
+        "operationId": "NewsUpdateIsTrending",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["account_id", "news_id"],
+                "properties": {
+                  "account_id": {
+                    "type": "string",
+                    "example": "8"
+                  },
+                  "news_id": {
+                    "type": "string",
+                    "example": "15"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "account_id",
+                  "value": "8",
+                  "type": "text"
+                },
+                {
+                  "key": "news_id",
+                  "value": "15",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/isActiveNews": {
+      "patch": {
+        "summary": "News Update isActiveNews",
+        "operationId": "NewsUpdateisActiveNews",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["account_id", "news_id"],
+                "properties": {
+                  "account_id": {
+                    "type": "string",
+                    "example": "8"
+                  },
+                  "news_id": {
+                    "type": "string",
+                    "example": "8"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "account_id",
+                  "value": "8",
+                  "type": "text"
+                },
+                {
+                  "key": "news_id",
+                  "value": "8",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/removeNews": {
+      "delete": {
+        "summary": "News - delete News",
+        "operationId": "News-deleteNews",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/addGallery": {
+      "post": {
+        "summary": "News - Add Gallery Image",
+        "operationId": "News-AddGalleryImage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["news_id", "file"],
+                "properties": {
+                  "news_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "news_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "filename",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/updateGallery": {
+      "put": {
+        "summary": "News - Update Gallery Image",
+        "operationId": "News-UpdateGalleryImage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["news_id", "file", "image_id"],
+                "properties": {
+                  "news_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "image_id": {
+                    "type": "string",
+                    "example": "2"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "news_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "filename",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "image_id",
+                  "value": "2",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/removeGallery": {
+      "delete": {
+        "summary": "News - delete Gallery image",
+        "operationId": "News-deleteGalleryimage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/getGallery": {
+      "get": {
+        "summary": "News - Get Gallery",
+        "operationId": "News-GetGallery",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/news_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/view": {
+      "get": {
+        "summary": "News - view",
+        "operationId": "News-view",
+        "parameters": [
+          {
+            "name": "news_id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/news/searchNews": {
+      "get": {
+        "summary": "News - searchNews",
+        "operationId": "News-searchNews",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/news_string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["News"]
+      }
+    },
+    "/api/listing/add": {
+      "post": {
+        "summary": "Listing - Add",
+        "operationId": "Listing-Add",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "file", "summary"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Paint Repair"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "All services"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "summary": {
+                    "type": "string",
+                    "example": "xyz"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "Paint Repair",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "All services",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture.PNG"
+                },
+                {
+                  "key": "summary",
+                  "value": "xyz",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Listing"]
+      }
+    },
+    "/api/listing/replace-image": {
+      "put": {
+        "summary": "Listing - Replace Image",
+        "operationId": "Listing-ReplaceImage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["image_id", "file", "list_id"],
+                "properties": {
+                  "image_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "list_id": {
+                    "type": "string",
+                    "example": "1"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "image_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "list_id",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Listing"]
+      }
+    },
+    "/api/listing/edit": {
+      "put": {
+        "summary": "Listing - Edit",
+        "operationId": "Listing-Edit",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content", "status", "list_id", "summary"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "massage 1hour"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "all kinds of massage"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "list_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "summary": {
+                    "type": "string",
+                    "example": "xyz"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "massage 1hour",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "all kinds of massage",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "list_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "summary",
+                  "value": "xyz",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Listing"]
+      }
+    },
+    "/api/listing/info": {},
+    "/api/event/getAllEvents": {
+      "get": {
+        "summary": "Event- Get All Events",
+        "description": "Event Join API",
+        "operationId": "Event-GetAllEvents",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+    "/api/event/create": {
+      "post": {
+        "summary": "Event Create Event",
+        "description": "Event Join API",
+        "operationId": "EventCreateEvent",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "description": "Event Join API",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "content",
+                  "file",
+                  "is_public",
+                  "place",
+                  "event_time",
+                  "event_end"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "is_public": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "place": {
+                    "type": "string",
+                    "example": "Singapore"
+                  },
+                  "event_time": {
+                    "type": "string",
+                    "example": "2020-10-20"
+                  },
+                  "event_end": {
+                    "type": "string",
+                    "example": "2020-10-28"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "is_public",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "place",
+                  "value": "Singapore",
+                  "type": "text"
+                },
+                {
+                  "key": "event_time",
+                  "value": "2020-10-20",
+                  "type": "text"
+                },
+                {
+                  "key": "event_end",
+                  "value": "2020-10-28",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+    "/api/event/update": {
+      "put": {
+        "summary": "Event Update",
+        "operationId": "EventUpdate",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "content",
+                  "summary",
+                  "file",
+                  "is_closed",
+                  "is_public",
+                  "order",
+                  "place",
+                  "event_time",
+                  "event_end",
+                  "limit",
+                  "event_id"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "First News"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "summary": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "is_closed": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "is_public": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "order": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "place": {
+                    "type": "string",
+                    "example": "xyz"
+                  },
+                  "event_time": {
+                    "type": "string",
+                    "example": "2020-10-23"
+                  },
+                  "event_end": {
+                    "type": "string",
+                    "example": "2020-10-28"
+                  },
+                  "limit": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "event_id": {
+                    "type": "string",
+                    "example": "2"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "title",
+                  "value": "First News",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "summary",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture.PNG"
+                },
+                {
+                  "key": "is_closed",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "is_public",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "order",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "place",
+                  "value": "xyz",
+                  "type": "text"
+                },
+                {
+                  "key": "event_time",
+                  "value": "2020-10-23",
+                  "type": "text"
+                },
+                {
+                  "key": "event_end",
+                  "value": "2020-10-28",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "event_id",
+                  "value": "2",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+    "/api/event/deleteEvent": {
+      "delete": {
+        "summary": "Event - Delete Event",
+        "operationId": "Event-DeleteEvent",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+    "/api/event/view": {
+      "get": {
+        "summary": "Event View API",
+        "description": "Event View API",
+        "operationId": "EventViewAPI",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/event_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+    "/api/event/addGallery": {
+      "post": {
+        "summary": "Event- Add Gallery",
+        "operationId": "Event-AddGallery",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["event_id", "file"],
+                "properties": {
+                  "event_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "event_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "filename",
+                  "type": "file",
+                  "src": [
+                    "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture.PNG",
+                    "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture1.PNG",
+                    "/C:/Users/h/OneDrive/Pictures/Camera Roll/runner.PNG"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+    "/api/event/updateGallery": {
+      "put": {
+        "summary": "Event - Update Gallery Image",
+        "operationId": "Event-UpdateGalleryImage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["event_id", "file", "image_id"],
+                "properties": {
+                  "event_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "image_id": {
+                    "type": "string",
+                    "example": "2"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "event_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "filename",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "image_id",
+                  "value": "2",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+    "/api/event/removeGallery": {
+      "delete": {
+        "summary": "Event- Delete Gallery",
+        "operationId": "Event-DeleteGallery",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+    "/api/event/getGallery": {
+      "get": {
+        "summary": "Event - Get gallery only",
+        "description": "Event View-Private API",
+        "operationId": "Event-Getgalleryonly",
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Event"]
+      }
+    },
+
+    "/api/banner/list": {
+      "get": {
+        "summary": "Banner - List",
+        "description": "Banner List API",
+        "operationId": "Banner-List",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Banner"]
+      }
+    },
+    "/api/banner/viewBanner": {
+      "get": {
+        "summary": "Banner - view Banner",
+        "description": "Banner List API",
+        "operationId": "Banner-viewBanner",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/banner_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Banner"]
+      }
+    },
+    "/api/banner/removeBanner": {
+      "delete": {
+        "summary": "Banner - Delete Banner",
+        "description": "Banner List API",
+        "operationId": "Banner-DeleteBanner",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Banner"]
+      }
+    },
+    "/api/banner/create": {
+      "post": {
+        "summary": "Banner - Create Banner",
+        "description": "Create Banner API",
+        "operationId": "Banner-CreateBanner",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "description": "Create Banner API",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file", "title", "content", "link"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "xyz"
+                  },
+                  "link": {
+                    "type": "string",
+                    "example": "abc"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture.PNG"
+                },
+                {
+                  "key": "title",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "xyz",
+                  "type": "text"
+                },
+                {
+                  "key": "link",
+                  "value": "abc",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Banner"]
+      }
+    },
+    "/api/banner/updateBanner": {
+      "put": {
+        "summary": "Banner - Update Banner",
+        "description": "Replace Banner Image API",
+        "operationId": "Banner-UpdateBanner",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "description": "Replace Banner Image API",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["banner_id", "file", "title", "content", "link"],
+                "properties": {
+                  "banner_id": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "link": {
+                    "type": "string",
+                    "example": "xx"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "banner_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture.PNG"
+                },
+                {
+                  "key": "title",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "link",
+                  "value": "xx",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Banner"]
+      }
+    },
+    "/api/account/list": {
+      "get": {
+        "summary": "Account - List",
+        "description": "Banner List API",
+        "operationId": "Account-List",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Account -"]
+      }
+    },
+    "/api/account/removeAccount": {
+      "delete": {
+        "summary": "Account - Delete account",
+        "description": "Banner List API",
+        "operationId": "Account-Deleteaccount",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Account -"]
+      }
+    },
+    "/api/account/createAccount": {
+      "post": {
+        "summary": "Account - Create account",
+        "description": "Create Banner API",
+        "operationId": "Account-Createaccount",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "description": "Create Banner API",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "file",
+                  "name",
+                  "address",
+                  "description",
+                  "contact_name",
+                  "email",
+                  "prefix"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "xyz"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "abc"
+                  },
+                  "contact_name": {
+                    "type": "string",
+                    "example": "harry"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "harendra@solvware.co"
+                  },
+                  "prefix": {
+                    "type": "string",
+                    "example": "TR"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "logo",
+                  "type": "file",
+                  "src": "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture.PNG"
+                },
+                {
+                  "key": "name",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "address",
+                  "value": "xyz",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "abc",
+                  "type": "text"
+                },
+                {
+                  "key": "contact_name",
+                  "value": "harry",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "harendra@solvware.co",
+                  "type": "text"
+                },
+                {
+                  "key": "prefix",
+                  "value": "TR",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Account -"]
+      }
+    },
+    "/api/account/updateAccount": {
+      "put": {
+        "summary": "Account - update Account",
+        "description": "Create Banner API",
+        "operationId": "Account-updateAccount",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "description": "Create Banner API",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "file",
+                  "name",
+                  "address",
+                  "description",
+                  "contact_name",
+                  "email",
+                  "prefix",
+                  "account_id"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "xx"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "xyz"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "abc"
+                  },
+                  "contact_name": {
+                    "type": "string",
+                    "example": "harry"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "harendra@solvware.co"
+                  },
+                  "prefix": {
+                    "type": "string",
+                    "example": "TRP"
+                  },
+                  "account_id": {
+                    "type": "string",
+                    "example": "3"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "logo",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "name",
+                  "value": "xx",
+                  "type": "text"
+                },
+                {
+                  "key": "address",
+                  "value": "xyz",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "abc",
+                  "type": "text"
+                },
+                {
+                  "key": "contact_name",
+                  "value": "harry",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "harendra@solvware.co",
+                  "type": "text"
+                },
+                {
+                  "key": "prefix",
+                  "value": "TRP",
+                  "type": "text"
+                },
+                {
+                  "key": "account_id",
+                  "value": "3",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Account -"]
+      }
+    },
+    "/api/vendor/registration": {
+      "post": {
+        "summary": "Vendor:  register vendor",
+        "operationId": "Vendor:registervendor",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password",
+                  "password_confirm",
+                  "vendor_name",
+                  "fullname"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "harry@solveware.co"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "password_confirm": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vendor_name": {
+                    "type": "string",
+                    "example": "test name 5"
+                  },
+                  "fullname": {
+                    "type": "string",
+                    "example": "Harry voot"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "email",
+                  "value": "harry@solveware.co",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "12345",
+                  "type": "text"
+                },
+                {
+                  "key": "password_confirm",
+                  "value": "12345",
+                  "type": "text"
+                },
+                {
+                  "key": "vendor_name",
+                  "value": "test name 5",
+                  "type": "text"
+                },
+                {
+                  "key": "fullname",
+                  "value": "Harry voot",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Vendor"]
+      }
+    },
+    "/api/vendor/update_1": {
+      "put": {
+        "summary": "Vendor:  Update Vendor Step 1",
+        "operationId": "Vendor:UpdateVendorStep1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "gender",
+                  "birthday",
+                  "nric",
+                  "vendor_name",
+                  "about",
+                  "company_employees",
+                  "company_uen"
+                ],
+                "properties": {
+                  "gender": {
+                    "type": "string",
+                    "example": "M"
+                  },
+                  "birthday": {
+                    "type": "string",
+                    "example": "2010-01-01"
+                  },
+                  "nric": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "vendor_name": {
+                    "type": "string",
+                    "example": "test name 5"
+                  },
+                  "about": {
+                    "type": "string",
+                    "example": "Marketing reaserch And Data modification"
+                  },
+                  "company_employees": {
+                    "type": "string",
+                    "example": "50"
+                  },
+                  "company_uen": {
+                    "type": "string",
+                    "example": "RT45"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "gender",
+                  "value": "M",
+                  "type": "text"
+                },
+                {
+                  "key": "birthday",
+                  "value": "2010-01-01",
+                  "type": "text"
+                },
+                {
+                  "key": "nric",
+                  "value": "12345",
+                  "type": "text"
+                },
+                {
+                  "key": "vendor_name",
+                  "value": "test name 5",
+                  "type": "text"
+                },
+                {
+                  "key": "about",
+                  "value": "Marketing reaserch And Data modification",
+                  "type": "text"
+                },
+                {
+                  "key": "company_employees",
+                  "value": "50",
+                  "type": "text"
+                },
+                {
+                  "key": "company_uen",
+                  "value": "RT45",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Vendor"]
+      }
+    },
+    "/api/vendor/update_2": {
+      "put": {
+        "summary": "Vendor:  Update Vendor Step 2",
+        "operationId": "Vendor:UpdateVendorStep2",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "transfer_screenshot",
+                  "type": "file",
+                  "src": "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture.PNG"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Vendor"]
+      }
+    },
+    "/api/vendor/update_3": {
+      "put": {
+        "summary": "Vendor:  Update Vendor Step 3",
+        "operationId": "Vendor:UpdateVendorStep3",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "company_logo",
+                  "type": "file",
+                  "src": "/C:/Users/h/OneDrive/Pictures/Camera Roll/Capture.PNG"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Vendor"]
+      }
+    },
+    "/api/vendor/getProfile": {
+      "get": {
+        "summary": "Vendor: getProfile",
+        "operationId": "Vendor:getProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Vendor"]
+      }
+    },
+    "/api/ads/createAds": {
+      "post": {
+        "summary": "create Ads",
+        "description": "api/ads -- create ads",
+        "operationId": "createAds",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "description": "api/ads -- create ads",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "description", "link", "isBottom", "file"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "carkee ads new"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "ads for carkee app 2"
+                  },
+                  "link": {
+                    "type": "string",
+                    "example": "https://adslink2.com"
+                  },
+                  "isBottom": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "name",
+                  "value": "carkee ads new",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "ads for carkee app 2",
+                  "type": "text"
+                },
+                {
+                  "key": "link",
+                  "value": "https://adslink2.com",
+                  "type": "text"
+                },
+                {
+                  "key": "isBottom",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Ads"]
+      }
+    },
+    "/api/ads/list": {
+      "get": {
+        "summary": "get  all Ads",
+        "description": "ads/get?page=1&limit=12\n\nGet the ads using user_id. Page and limit are passed using query.",
+        "operationId": "getallAds",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Ads"]
+      }
+    },
+    "/api/ads/viewAds": {
+      "get": {
+        "summary": "get ads by Id",
+        "description": "ads/:id -- ads/12\ngive ads Id as params",
+        "operationId": "getadsbyId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Ads"]
+      }
+    },
+    "/api/ads/updateAds": {
+      "patch": {
+        "summary": "update ads",
+        "description": "api/ads/update -- update ads using ads Id,give ads Id in the request body",
+        "operationId": "updateads",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "description": "api/ads/update -- update ads using ads Id,give ads Id in the request body",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "description",
+                  "link",
+                  "isBottom",
+                  "file",
+                  "Ads_id"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "carkee ads updated"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "ads for carkee app 2"
+                  },
+                  "link": {
+                    "type": "string",
+                    "example": "https://adslink2.com"
+                  },
+                  "isBottom": {
+                    "type": "string",
+                    "example": "1"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Ads_id": {
+                    "type": "string",
+                    "example": "16"
+                  }
+                }
+              },
+              "example": [
+                {
+                  "key": "name",
+                  "value": "carkee ads updated",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "ads for carkee app 2",
+                  "type": "text"
+                },
+                {
+                  "key": "link",
+                  "value": "https://adslink2.com",
+                  "type": "text"
+                },
+                {
+                  "key": "isBottom",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/home/prem/Downloads/blackjean.jpeg"
+                },
+                {
+                  "key": "Ads_id",
+                  "value": "16",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        "tags": ["Ads"]
+      }
+    },
+    "/api/ads/deleteAds": {
+      "delete": {
+        "summary": "Remove Ads",
+        "description": "remove ads ",
+        "operationId": "RemoveAds",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "tags": ["Ads"]
+      }
+    },
+    "/api/ads/updateisBottom": {
+      "patch": {
+        "summary": "updateisBottom",
+        "operationId": "updateisBottom",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Seccessfully execution of API",
+            "headers": {}
+          },
+          "402": {
+            "description": "Data not found"
+          },
+          "400": {
+            "description": "Kindly share rquired fields"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "example": {
+                  "Ads_id": 8,
+                  "isBottom": 0
+                }
+              },
+              "example": "{\n    \"Ads_id\" : 8,\n    \"isBottom\" : 0\n}"
+            }
+          }
+        },
+        "tags": ["Ads"]
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "Content-Type": {
+        "name": "Content-Type",
+        "in": "header",
+        "required": true,
+        "style": "simple",
+        "schema": {
+          "type": "string",
+          "example": "application/x-www-form-urlencoded"
+        }
+      },
+      "page": {
+        "name": "page",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "pagesize": {
+        "name": "pagesize",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "access-token": {
+        "name": "access-token",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "string",
+          "example": "aLiTY2ODhNjEotqLGRL1B1eA1qgfjtUx"
+        }
+      },
+      "item_id": {
+        "name": "item_id",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "redeem_id": {
+        "name": "redeem_id",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "news_id": {
+        "name": "news_id",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "news_string": {
+        "name": "news_string",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "string",
+          "example": "news"
+        }
+      },
+      "event_id": {
+        "name": "event_id",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "banner_id": {
+        "name": "banner_id",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "number"
+        }
+      },
+      "id": {
+        "name": "id",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": {
+          "type": "number"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "noauth": {
+        "type": "http",
+        "scheme": "noauth"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "noauth": []
+    },
+    {
+      "noauth": []
+    },
+    {
+      "noauth": []
+    },
+    {
+      "noauth": []
+    },
+    {
+      "noauth": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "noauth": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    },
+    {
+      "bearer": []
+    }
+  ],
+  "tags": [],
+  "externalDocs": {
+    "url": "",
+    "description": ""
+  },
+  "warnings": [
+    "Two GET or two POST methods for the same path are not allowed in OpenAPI specification : puthttp://localhost:3000/api/user/update-profile",
+    "Two GET or two POST methods for the same path are not allowed in OpenAPI specification : puthttp://localhost:3000/api/user/update-profile",
+    "Two GET or two POST methods for the same path are not allowed in OpenAPI specification : puthttp://localhost:3000/api/user/update-profile",
+    "Two GET or two POST methods for the same path are not allowed in OpenAPI specification : deletehttp://localhost:3000/api/item/removeItem"
+  ]
+}
